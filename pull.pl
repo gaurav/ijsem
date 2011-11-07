@@ -45,8 +45,8 @@ sub process {
             # Find the Notification List.
             my $tree =  HTML::TreeBuilder::XPath->new;
             say "Parsing with HTML::TreeBuilder::XPath.";
-            $tree->parse($content);
-            my $notification_list = $tree->findnodes('//div[./h2[lower-case(@id)="notificationlist"]]')->[0];
+            $tree->parse(lc $content);
+            my $notification_list = $tree->findnodes('//div[./h2[@id="notificationlist"]]')->[0];
             if (not defined $notification_list) {
                 say "Unable to find notification list!"; 
                 save_content_and_bail($content);
