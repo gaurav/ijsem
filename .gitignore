@@ -1,1 +1,2 @@
-data/
+data/   # When it's a directory
+data    # When it's a symlink
