@@ -31,6 +31,11 @@ my $result = GetOptions(
 pod2usage(1) if $help;
 pod2usage(-exitstatus => 0, -verbose => 2) if $man;
 
+# Check if there is a single ARGV variable; if so, it's the URL.
+if(exists($ARGV[0]) and not exists($ARGV[1])) {
+    $url = $ARGV[0];
+}
+
 # Okay, go time!
 process($url);
 
@@ -102,7 +107,7 @@ sub process_notification_table {
         my @rows = $te->rows();
         shift @rows;    # Get rid of the first row: the title row.
 
-        say "# " . scalar(@rows) . " rows detected.";
+        say $fh "# " . scalar(@rows) . " rows detected.";
 
         foreach my $row (@rows) {
             my $name =          $row->[0];
@@ -118,7 +123,7 @@ sub process_notification_table {
             my $string = "\@$page_no [$proposed_as] \"$name\"";
 
             say $fh $string;
-            say $string;
+            # say $string;
             $count_names++;
         }
     }
