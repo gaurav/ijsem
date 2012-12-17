@@ -21,6 +21,7 @@ use HTML::TableExtract;
 my $help =  0;
 my $man =   0;
 
+my $VOLUMES_PATH = "data/ijsem_extract";
 my $url = "http://ijs.sgmjournals.org/content/current";
 my $result = GetOptions(
     "url=s" =>      \$url,
@@ -86,8 +87,8 @@ sub process {
 sub process_notification_table {
     my ($vol, $part, $content) = @_;
 
-    mkdir "data/volume_$vol";
-    open my $fh, ">:utf8", "data/volume_$vol/part_$part.txt";
+    mkdir "$VOLUMES_PATH/volume_$vol";
+    open my $fh, ">:utf8", "$VOLUMES_PATH/volume_$vol/part_$part.txt";
     say $fh "From [$url] Volume [$vol] Part [$part]";
 
     my $te = HTML::TableExtract->new( 

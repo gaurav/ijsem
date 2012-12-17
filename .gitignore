@@ -1,3 +1,8 @@
 *.swp
 .DS_Store
-data/*
+
+# When it's a directory
+data/
+
+# When it's a symlink
+data
