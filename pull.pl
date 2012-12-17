@@ -60,6 +60,11 @@ sub process {
             my $relative_url = $notification_list->findvalue('.//a[@rel="full-text"]/@href');
             $tree->delete();
 
+            # Note that since IJSEM 62(2) $relative_url needs
+            # the 'pt_' capitalized (we lowercase it earlier to make
+            # it easier to spot.
+            $relative_url =~ s/pt_/Pt_/g;
+
             my $uri = URI->new($url);
             $uri->path($relative_url);
 
