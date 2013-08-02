@@ -14,6 +14,18 @@ use HTML::TreeBuilder::XPath;
 use Data::Dumper;
 use HTML::TableExtract;
 
+=head1 NAME
+
+pull.pl -- Download information from IJSEM
+
+=head1 SYNOPSIS
+
+    pull.pl <url to the table with name changes>
+    pull.pl <url to an article containing name changes>
+    pull.pl <url to the issue of the IJSEM>
+
+=cut
+
 # Command line options? We expect a URL to either:
 #   1. A journal issue to extract data from.
 #   2. The article containing the nomenclatural changes.
