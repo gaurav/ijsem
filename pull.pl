@@ -52,7 +52,8 @@ if(exists($ARGV[0]) and not exists($ARGV[1])) {
 process($url);
 
 sub process {
-    my $url = shift;
+    # Change the global $url every time we go to a new URL.
+    $url = shift;
 
     say "Downloading content from $url ...";
     my $content = download_page($url);
@@ -84,7 +85,7 @@ sub process {
             process($uri);
         }
 
-        when(/<title>Notification that new names and new combinations have appeared in volume (\d+), part (\d+), of the IJSEM/) {
+        when(/<title>Notification that new names of prokaryotes, new combinations and new taxonomic opinions have appeared in volume (\d+), part (\d+),\s+of the IJSEM/m) {
             my $volume =    $1;
             my $part =      $2;
             say "Content identified as notification of new names and combinations in volume $volume, part $part.";
