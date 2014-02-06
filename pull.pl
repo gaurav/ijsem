@@ -85,7 +85,7 @@ sub process {
             process($uri);
         }
 
-        when(/<title>Notification that new names of prokaryotes, new combinations and new taxonomic opinions have appeared in volume (\d+), part (\d+),\s+of the IJSEM/m) {
+        when(/<title>Notification that new names of prokaryotes, new combinations,? and new taxonomic opinions have appeared in volume (\d+), part\s+(\d+),\s+of the IJSEM/m) {
             my $volume =    $1;
             my $part =      $2;
             say "Content identified as notification of new names and combinations in volume $volume, part $part.";
